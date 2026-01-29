@@ -1,0 +1,74 @@
+# ==============================================================================
+# Modular Weapon Detection Pipeline - Requirements
+# ==============================================================================
+# Tested on: Python 3.10, CUDA 11.8, Ubuntu 22.04
+# Hardware: NVIDIA A100 (20GB VRAM)
+# ==============================================================================
+
+# Core Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Ultralytics (YOLOv8, RT-DETR)
+ultralytics>=8.0.0
+
+# Computer Vision
+opencv-python>=4.8.0
+opencv-python-headless>=4.8.0  # For server deployments
+
+# Scientific Computing
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Data Processing
+pandas>=2.0.0
+PyYAML>=6.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Tracking (ByteTrack dependencies)
+lap>=0.4.0  # Linear Assignment Problem solver
+cython>=0.29.0
+filterpy>=1.4.5  # Kalman filtering
+
+# Model Analysis
+thop>=0.1.1  # FLOPs calculation
+ptflops>=0.7.0  # Alternative FLOPs calculator
+
+# Utilities
+tqdm>=4.65.0
+Pillow>=9.5.0
+pytz>=2023.3
+
+# Notebook Support (optional)
+jupyter>=1.0.0
+ipywidgets>=8.0.0
+
+# Web App (optional)
+# streamlit>=1.25.0
+
+# Development Tools (optional)
+# black>=23.0.0
+# flake8>=6.0.0
+# pytest>=7.3.0
+
+# ==============================================================================
+# Platform-Specific Notes:
+# ==============================================================================
+# 
+# For CUDA 11.8:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+#
+# For CUDA 12.1:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+#
+# For CPU only:
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+#
+# For cython_bbox (if needed):
+#   cd cython_bbox && pip install -e .
+#
+# ==============================================================================

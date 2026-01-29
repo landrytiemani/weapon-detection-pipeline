@@ -1,0 +1,38 @@
+{
+  "H1.1": {
+    "description": "Person-centric cropping improves mAP50 by >= 5 percentage points",
+    "baseline_mAP50": 0.6789828072844541,
+    "no_person_detection_mAP50": 0.4329935680187975,
+    "improvement_pp": 24.598923926565664,
+    "relative_improvement_percent": 56.81129176842127,
+    "threshold_pp": 5.0,
+    "hypothesis_supported": "True"
+  },
+  "H1.2": {
+    "description": "Hierarchical NMS reduces FP by >= 20%",
+    "baseline_fp": 75,
+    "no_nms_fp": 255,
+    "reduction_percent": 70.58823529411765,
+    "threshold_percent": 20.0,
+    "hypothesis_supported": true
+  },
+  "H1.3": {
+    "description": "Optimal crop_scale falls within [1.0, 1.5]",
+    "optimal_scale": 1.8,
+    "optimal_mAP50": 0.6968595856569624,
+    "all_scales": {
+      "crop_scale_1.0": 0.6165766653957855,
+      "crop_scale_1.2": 0.6580534554992317,
+      "crop_scale_1.5": 0.6928023093656497,
+      "crop_scale_1.8": 0.6968595856569624,
+      "crop_scale_2.0": 0.6480419137000366,
+      "crop_scale_2.5": 0.6789828072844541,
+      "crop_scale_3.0": 0.681218244585984
+    },
+    "expected_range": [
+      1.0,
+      1.5
+    ],
+    "hypothesis_supported": false
+  }
+}

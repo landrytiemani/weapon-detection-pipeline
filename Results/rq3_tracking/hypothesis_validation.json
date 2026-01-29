@@ -1,0 +1,47 @@
+{
+  "H3.1": {
+    "description": "Tracking reduces GFLOPs by >= 33% with <= 2pp accuracy loss",
+    "best_gflops_reduction_percent": 44.66831990080594,
+    "best_gap": 8,
+    "accuracy_loss_pp": 11.137753967649555,
+    "threshold_reduction_percent": 33.0,
+    "threshold_accuracy_loss_pp": 2.0,
+    "hypothesis_supported": "False"
+  },
+  "H3.2": {
+    "description": "Frame gap 3-5 achieves >= 30% FPS gain with <= 2pp accuracy loss",
+    "target_gap": 3,
+    "fps_gain_percent": 38.717098081307306,
+    "accuracy_loss_pp": 0.0,
+    "threshold_fps_gain_percent": 30.0,
+    "threshold_accuracy_loss_pp": 2.0,
+    "gap_results": {
+      "gap_1": {
+        "mAP50": 0.6789828072844541,
+        "mAP50_95": 0.0,
+        "fps": 12.786600599321426
+      },
+      "gap_2": {
+        "mAP50": 0.6636159266764369,
+        "mAP50_95": 0.0,
+        "fps": 15.91792436664863
+      },
+      "gap_3": {
+        "mAP50": 0.6268311226292886,
+        "mAP50_95": 0.0,
+        "fps": 17.73720129462573
+      },
+      "gap_5": {
+        "mAP50": 0.5824526033568516,
+        "mAP50_95": 0.0,
+        "fps": 19.583690460122526
+      },
+      "gap_8": {
+        "mAP50": 0.5676052676079586,
+        "mAP50_95": 0.0,
+        "fps": 20.36281839903044
+      }
+    },
+    "hypothesis_supported": true
+  }
+}

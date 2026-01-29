@@ -1,0 +1,17 @@
+
+\begin{table}[htbp]
+\centering
+\caption{RQ4: Privacy Configuration Comparison}
+\label{tab:rq4_privacy}
+\begin{tabular}{llccccc}
+\toprule
+Scope & Method & mAP50 & Precision & Recall & FPS & Latency (ms) \\
+\midrule
+N/A & N/A & 0.679 & 0.739 & 0.739 & 11.8 & 84.8 \\
+non_targets & pixelate & 0.679 & 0.739 & 0.739 & 12.7 & 78.5 \\
+non_targets & gaussian & 0.679 & 0.739 & 0.739 & 12.7 & 78.6 \\
+everyone & pixelate & 0.679 & 0.739 & 0.739 & 12.6 & 79.5 \\
+
+\bottomrule
+\end{tabular}
+\end{table}

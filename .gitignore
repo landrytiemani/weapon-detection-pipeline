@@ -1,0 +1,116 @@
+# ==============================================================================
+# Modular Weapon Detection Pipeline - .gitignore
+# ==============================================================================
+
+# ===== MODEL WEIGHTS (Large Files) =====
+weights/
+*.pt
+*.pth
+*.onnx
+*.engine
+*.trt
+*.weights
+*.h5
+*.pb
+*.tflite
+
+# ===== DATASETS =====
+Training/
+testing_data/
+dataset_v2/
+dataset*/
+CrowdHuman/
+MOT*/
+COCO*/
+VOC*/
+data/train/
+data/val/
+data/test/
+!data/sample/
+
+# ===== EXPERIMENT OUTPUTS =====
+runs/
+processed_videos/
+outputs/
+predictions/
+logs/
+mlruns/
+wandb/
+tensorboard/
+checkpoints/
+
+# ===== PYTHON =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ===== VIRTUAL ENVIRONMENTS =====
+venv/
+env/
+env10/
+ENV/
+.venv/
+
+# ===== JUPYTER =====
+.ipynb_checkpoints/
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== PROJECT SPECIFIC =====
+*.tmp
+*.log
+*.bak
+visual_debug/
+*.mp4
+*.avi
+*.mov
+*.tar
+*.tar.gz
+*.zip
+cache/
+
+# ByteTrack full repository
+ByteTrack/
+
+# Cython build artifacts
+cython_bbox/build/
+cython_bbox/*.pyd
+cython_bbox/*.so
+*.c
+!vision/**/*.c
+
+# External (pip installable)
+
+# Temp analysis files
+folder_structure.txt
+python_files_list.txt
+project_tree.txt
+vsc_history.txt
+stage2_coverage_report.json
+=8.0.0

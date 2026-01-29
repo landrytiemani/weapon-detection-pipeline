@@ -1,0 +1,38 @@
+{
+  "rt_detr": {
+    "name": "rt_detr",
+    "mAP50": 0.6114560187992386,
+    "mAP50_95": 0.0,
+    "precision": 0.6927899686520376,
+    "recall": 0.7700348432055749,
+    "f1": 0.7293729372937293,
+    "tp_count": 221,
+    "fp_count": 98,
+    "fn_count": 66,
+    "handgun_mAP50": 0.8009414842910476,
+    "knife_mAP50": 0.42197055330742966,
+    "handgun_precision": 0.8524590163934426,
+    "knife_precision": 0.47794117647058826,
+    "gflops": 258.68,
+    "fps": 11.88259493973861,
+    "latency_ms": 84.15670188804717
+  },
+  "yolov8_efficientvit": {
+    "name": "yolov8_efficientvit",
+    "mAP50": 0.6789828072844541,
+    "mAP50_95": 0.0,
+    "precision": 0.7386759581881533,
+    "recall": 0.7386759581881533,
+    "f1": 0.7386759581881533,
+    "tp_count": 212,
+    "fp_count": 75,
+    "fn_count": 75,
+    "handgun_mAP50": 0.7891119139890966,
+    "knife_mAP50": 0.5688537005798117,
+    "handgun_precision": 0.884393063583815,
+    "knife_precision": 0.5175438596491229,
+    "gflops": 32.26,
+    "fps": 12.958843198395408,
+    "latency_ms": 77.16738174004776
+  }
+}

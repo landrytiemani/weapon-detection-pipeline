@@ -1,0 +1,39 @@
+{
+  "H4.1": {
+    "description": "Privacy processing adds <= 5% overhead",
+    "baseline_latency_ms": 84.80273300588438,
+    "privacy_latency_ms": 78.47060363265999,
+    "overhead_percent": -7.4668930455166,
+    "baseline_fps": 11.792072785326518,
+    "privacy_fps": 12.743625685374406,
+    "threshold_percent": 5.0,
+    "hypothesis_supported": true
+  },
+  "H4.2": {
+    "description": "Privacy processing causes <= 2pp accuracy loss",
+    "baseline_mAP50": 0.6789828072844541,
+    "privacy_mAP50": 0.6789828072844541,
+    "accuracy_loss_pp": 0.0,
+    "threshold_pp": 2.0,
+    "hypothesis_supported": "True"
+  },
+  "method_comparison": {
+    "description": "Pixelation vs Gaussian blur comparison",
+    "pixelate_latency_ms": 78.47060363265999,
+    "gaussian_latency_ms": 78.60942558511223,
+    "pixelate_mAP50": 0.6789828072844541,
+    "gaussian_mAP50": 0.6789828072844541,
+    "pixelate_faster": true,
+    "speedup_percent": 0.1765970828802727,
+    "recommendation": "pixelate"
+  },
+  "scope_comparison": {
+    "description": "Selective vs blanket anonymization",
+    "selective_mAP50": 0.6789828072844541,
+    "blanket_mAP50": 0.6789828072844541,
+    "selective_utility_ratio": 1.0,
+    "blanket_utility_ratio": 1.0,
+    "selective_better": "False",
+    "recommendation": "selective"
+  }
+}

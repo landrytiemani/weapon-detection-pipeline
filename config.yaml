@@ -1,0 +1,128 @@
+# Pipeline I/O
+
+pipeline:
+  frames_dir: /home/ubuntu/weapon_detection_pipeline/testing_data/weaponsense/test/images
+  labels_dir: /home/ubuntu/weapon_detection_pipeline/testing_data/weaponsense/test/labels
+  dataset_split: test
+
+
+# Stage 2: Person detection / tracking
+stage_2:
+  approach: yolov8_tracker # Options: yolov8_tracker, ssd_mobilenet_bytetrack
+  
+  crop_scale: 1.8               # INCREASED from 1.5 - larger crops see weapons better
+  crop_overlap_threshold: 0.5   # Very aggressive overlap filtering
+  
+  flops_imgsz: 800 # Image size for FLOPs profiling
+
+  # Tracking (overridden by experiments)
+  use_tracker: False
+  frame_gap: 0
+
+  # Ablation: skip person detection entirely, run weapon detector on full frame
+  # Used for H1.1 hypothesis testing to measure person-centric cropping contribution
+  skip_person_detection: False
+  
+  yolov8_tracker:
+    model_path: /home/ubuntu/weapon_detection_pipeline/weights/person/yolov8n/yolov8n.pt
+    confidence_threshold: 0.15   # INCREASED from 0.1 - better person crops
+    iou_threshold: 0.3
+    device: 0
+    max_det: 500
+
+  # Alternative: SSD MobileNet
+  ssd_mobilenet_bytetrack:
+    model_path: /home/ubuntu/weapon_detection_pipeline/weights/person/ssd_mobilenetV2_lite/ssdmobilenetv2.pth
+    label_path: /home/ubuntu/weapon_detection_pipeline/weights/person/ssd_mobilenetV2_lite/voc-model-labels.txt
+    confidence_threshold: 0.10
+    iou_threshold: 0.30
+    device: 0
+    max_det: 300
+ 
+  tracker_config:
+    track_thresh: 0.15
+    match_thresh: 0.7
+    track_buffer: 60
+    frame_rate: 30
+    mot20: false
+    aspect_ratio_thresh: 2.0
+    min_box_area: 5
+
+
+# Stage 3: Weapon Detection
+stage_3:
+  approach: yolov8_efficientvit # Options: rt_detr, yolov8_efficientvit
+
+  # #parallelism
+  # parallelize: true
+  # workers : 2
+
+  # Test-time augmentation on crops
+  tta_flip: False
+  tta_scales: [1.5]  # [1.0, 1.3]
+  imgsz: 512 #640
+
+  # OPTIONAL: per-person crop tiling (helps tiny / skinny knives)
+  tile_enable: False
+  tile_grid: [1, 1]       # rows, cols (set [1,1] to disable)
+  tile_overlap: 0.2      # 15% tile overlap
+  
+  # NMS settings - DUAL PASS for duplicate removal
+  nms_iou_threshold: 0.45        # INCREASED from 0.3 for local NMS (per-class)
+  global_nms_threshold: 0.25     # Global NMS for cross-crop duplicates
+  min_final_confidence: 0.45      # Remove low-confidence predictions
+
+  # Class-specific settings
+  class_specific_conf:
+    handgun: 0.30                # Lower for better class
+    knife: 0.25                  # Much higher for worse class
+
+  # Size filtering (normalized 0-1)
+  min_box_size: 0.015            # Increased from 0.015
+  max_box_size: 0.35             # Decreased from 0.35
+  min_aspect_ratio: 0.25         # Increased from 0.25
+  max_aspect_ratio: 4.0          # Decreased from 4.0
+
+  
+  # RT-DETR Weapon Detection
+  rt_detr:
+    model_path: /home/ubuntu/weapon_detection_pipeline/weights/weapon/rt_detr/rt_detr.pt 
+    confidence_threshold: 0.25   # INCREASED from 0.3 to reduce false positives
+
+  # Alternative: YOLOv8 with EfficientViT (if using)
+  yolov8_efficientvit:
+    model_path: /home/ubuntu/weapon_detection_pipeline/weights/weapon/efficientvit_yolov8/efficientvit_yolov8.pt 
+    confidence_threshold: 0.20
+
+  # Class names
+  names: ["handgun", "knife"]
+
+# Evaluation Settings
+evaluation:
+  enabled: true
+  split: test
+  flops_imgsz: 640  # Image size for Stage-3 FLOPs calculation
+  visual_debug_every: 100    # Less frequent debug saves
+  visual_debug_limit: 50     # Fewer debug images
+
+
+# Privacy settings
+privacy:
+  enabled: true
+  scope: "non_targets"  # Options: non_targets | everyone
+  
+  # Face blurring
+  face_blur:
+    enabled: true
+    method: "pixelate"  # Options: pixelate | gaussian
+    pixel_block: 15
+    gaussian_ksize: 31
+    detector: "none"  # Options: none | haar | yunet
+    haar_path: "/home/ubuntu/weapon_detection_pipeline/weights/face/haarcascade_frontalface_default.xml"
+  
+  # Silhouette masking
+  silhouette:
+    enabled: false
+    fill_color: [32, 32, 32]  # BGR
+    fill_alpha: 0.88
+    outline_px: 2

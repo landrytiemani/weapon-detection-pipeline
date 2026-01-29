@@ -1,0 +1,16 @@
+
+\begin{table}[htbp]
+\centering
+\caption{RQ1: Ablation Study Results}
+\label{tab:rq1_ablation}
+\begin{tabular}{lcccccc}
+\toprule
+Configuration & mAP50 & Precision & Recall & F1 & FP & $\Delta$mAP \\
+\midrule
+Baseline & 0.679 & 0.739 & 0.739 & 0.739 & 75 & +0.000 \\
+No Person Detection & 0.433 & 0.777 & 0.498 & 0.607 & 41 & -0.246 \\
+No Nms & 0.508 & 0.457 & 0.749 & 0.568 & 255 & -0.171 \\
+
+\bottomrule
+\end{tabular}
+\end{table}

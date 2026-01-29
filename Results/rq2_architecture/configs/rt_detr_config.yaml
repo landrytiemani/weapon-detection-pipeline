@@ -1,0 +1,88 @@
+evaluation:
+  compute_flops: false
+  enabled: true
+  flops_imgsz: 640
+  split: test
+  visual_debug_every: 100
+  visual_debug_limit: 50
+pipeline:
+  dataset_split: test
+  frames_dir: /home/ubuntu/weapon_detection_pipeline/testing_data/weaponsense/test/images
+  labels_dir: /home/ubuntu/weapon_detection_pipeline/testing_data/weaponsense/test/labels
+privacy:
+  enabled: true
+  face_blur:
+    detector: none
+    enabled: true
+    gaussian_ksize: 31
+    haar_path: /home/ubuntu/weapon_detection_pipeline/weights/face/haarcascade_frontalface_default.xml
+    method: pixelate
+    pixel_block: 15
+  scope: non_targets
+  silhouette:
+    enabled: false
+    fill_alpha: 0.88
+    fill_color:
+    - 32
+    - 32
+    - 32
+    outline_px: 2
+stage_2:
+  approach: yolov8_tracker
+  crop_overlap_threshold: 0.5
+  crop_scale: 2.5
+  flops_imgsz: 800
+  frame_gap: 1
+  skip_person_detection: false
+  ssd_mobilenet_bytetrack:
+    confidence_threshold: 0.1
+    device: 0
+    iou_threshold: 0.3
+    label_path: /home/ubuntu/weapon_detection_pipeline/weights/person/ssd_mobilenetV2_lite/voc-model-labels.txt
+    max_det: 300
+    model_path: /home/ubuntu/weapon_detection_pipeline/weights/person/ssd_mobilenetV2_lite/ssdmobilenetv2.pth
+  tracker_config:
+    aspect_ratio_thresh: 2.0
+    frame_rate: 30
+    match_thresh: 0.7
+    min_box_area: 5
+    mot20: false
+    track_buffer: 60
+    track_thresh: 0.15
+  use_tracker: false
+  yolov8_tracker:
+    confidence_threshold: 0.15
+    device: 0
+    iou_threshold: 0.3
+    max_det: 500
+    model_path: /home/ubuntu/weapon_detection_pipeline/weights/person/yolov8n/yolov8n.pt
+stage_3:
+  approach: rt_detr
+  class_specific_conf:
+    handgun: 0.3
+    knife: 0.25
+  global_nms_threshold: 0.25
+  imgsz: 512
+  max_aspect_ratio: 4.0
+  max_box_size: 0.35
+  min_aspect_ratio: 0.25
+  min_box_size: 0.015
+  min_final_confidence: 0.45
+  names:
+  - handgun
+  - knife
+  nms_iou_threshold: 0.45
+  rt_detr:
+    confidence_threshold: 0.25
+    model_path: /home/ubuntu/weapon_detection_pipeline/weights/weapon/rt_detr/rt_detr.pt
+  tile_enable: false
+  tile_grid:
+  - 1
+  - 1
+  tile_overlap: 0.2
+  tta_flip: false
+  tta_scales:
+  - 1.5
+  yolov8_efficientvit:
+    confidence_threshold: 0.2
+    model_path: /home/ubuntu/weapon_detection_pipeline/weights/weapon/efficientvit_yolov8/efficientvit_yolov8.pt
