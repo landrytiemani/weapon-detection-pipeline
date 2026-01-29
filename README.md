@@ -379,28 +379,33 @@ If you use this code in your research, please cite:
 }
 ```
 
-### Related Works
+### Related Works using same dataset
 
 ```bibtex
-@inproceedings{zhang2022bytetrack,
-  title     = {ByteTrack: Multi-Object Tracking by Associating Every Detection Box},
-  author    = {Zhang, Yifu and Sun, Peize and Jiang, Yi and Yu, Dongdong and others},
-  booktitle = {European Conference on Computer Vision (ECCV)},
-  year      = {2022}
+@article{berardini_edge_2025,
+	title = {Edge artificial intelligence and super-resolution for enhanced weapon detection in video surveillance},
+	volume = {140},
+	issn = {09521976},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0952197624018426},
+	doi = {10.1016/j.engappai.2024.109684},
+	language = {en},
+	urldate = {2025-11-24},
+	journal = {Engineering Applications of Artificial Intelligence},
+	author = {Berardini, Daniele and Migliorelli, Lucia and Galdelli, Alessandro and Marín-Jiménez, Manuel J.},
+	month = jan,
+	year = {2025},
+	pages = {109684},
 }
 
-@inproceedings{lv2024rtdetr,
-  title     = {DETRs Beat YOLOs on Real-time Object Detection},
-  author    = {Lv, Wenyu and Xu, Shangliang and Zhao, Yian and others},
-  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year      = {2024}
-}
-
-@article{cai2023efficientvit,
-  title     = {EfficientViT: Lightweight Multi-Scale Attention for High-Resolution Dense Prediction},
-  author    = {Cai, Han and Gan, Chuang and Han, Song},
-  journal   = {arXiv preprint arXiv:2205.14756},
-  year      = {2023}
+@article{berardini2024deep,
+  title={A deep-learning framework running on edge devices for handgun and knife detection from indoor video-surveillance cameras},
+  author={Berardini, Daniele and Migliorelli, Lucia and Galdelli, Alessandro and Frontoni, Emanuele and Mancini, Adriano and Moccia, Sara},
+  journal={Multimedia Tools and Applications},
+  volume={83},
+  number={7},
+  pages={19109--19127},
+  year={2024},
+  publisher={Springer}
 }
 ```
 
